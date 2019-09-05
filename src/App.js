@@ -24,9 +24,9 @@ export class App extends React.Component {
                   <div className="col-sm-8 col-sm-offset-2">
                       <Router history={history}>
                           <Switch>
-                              <Route exact path="/" component={HomePage} />
                               <Route exact path="/login" component={LoginPage} />
                               <Route exact path="/register" component={RegisterPage} />
+                              <PrivateRoute exact path="/" component={HomePage} />
                           </Switch>
                       </Router>
                   </div>
