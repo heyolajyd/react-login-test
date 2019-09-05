@@ -44,6 +44,10 @@ import { stat } from 'fs';
     render() {
         const { user, submitted } = this.state;
         const {username, password} = user;
+        const { registering } = this.props;
+
+        const buttonText = registering ? "Registering.." : "Register";
+
         return (
             <div className="col-md-6 col-md-offset-3">
                 <h2>Register</h2>
@@ -63,7 +67,7 @@ import { stat } from 'fs';
                         }
                     </div>
                     <div className="form-group">
-                        <button type="submit" onClick={this.handleSubmit} className="btn btn-primary">Register</button>
+                        <button type="submit" onClick={this.handleSubmit} disabled={registering} className="btn btn-primary">{buttonText}</button>
                         <Link to="/login" className="btn btn-link">Cancel</Link>
                     </div>
                 </form>
@@ -74,8 +78,8 @@ import { stat } from 'fs';
 
 // complete the below function
 function mapStateToProps(state) {
-    
-    return { ...state.authentication, ...state.registration };
+    const { authentication, registration } = state;
+    return { ...authentication, registering: registration.registering };
 }
 
 export { RegisterComponent as TestRegisterPage };
