@@ -1,5 +1,5 @@
 import React from 'react';
-import { Router, Route } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PrivateRoute } from './PrivateRoute.js';
 import { history } from './helpers';
@@ -22,7 +22,13 @@ export class App extends React.Component {
         return (
               <div className="container">
                   <div className="col-sm-8 col-sm-offset-2">
-                              <LoginPage />
+                      <Router history={history}>
+                          <Switch>
+                              <Route exact path="/" component={HomePage} />
+                              <Route exact path="/login" component={LoginPage} />
+                              <Route exact path="/register" component={RegisterPage} />
+                          </Switch>
+                      </Router>
                   </div>
               </div>
         );
