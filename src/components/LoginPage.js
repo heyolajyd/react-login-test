@@ -41,6 +41,8 @@ class LoginComponent extends Component {
 
     render() {
         const { username, password, submitted } = this.state;
+        const { loggingIn } = this.props;
+        const buttonText = loggingIn ? "Logging in..." : "Login";
         return (
             <div className="col-md-6 col-md-offset-3">
                 <h2>Login</h2>
@@ -60,7 +62,7 @@ class LoginComponent extends Component {
                         }
                     </div>
                     <div className="form-group">
-                        <button type="submit" onClick={this.handleSubmit} className="btn btn-primary">Login</button>
+                        <button type="submit" onClick={this.handleSubmit} disablled={loggingIn} className="btn btn-primary">{buttonText}</button>
                         <button className="btn btn-link">
                             <Link to="/register">Register</Link>
                         </button>
@@ -72,9 +74,11 @@ class LoginComponent extends Component {
 }
 
 function mapStateToProps(state) {
+    const { authentication, alert } = state;
     return {
-        ...state.authentication,
-        ...state.alert
+        ...authentication,
+        loggingIn: authentication.loggingIn,
+        ...alert
     }
 }
 
