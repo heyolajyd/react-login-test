@@ -4,8 +4,9 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { userActions } from '../actions';
+import { stat } from 'fs';
 
- class RegisterPage extends Component {
+ class RegisterComponent extends Component {
     constructor(props) {
         super(props);
 
@@ -31,9 +32,10 @@ import { userActions } from '../actions';
     handleSubmit(event) {
         // handle button click and dispatch register
         if(event) event.preventDefault();
-        console.log("dispatch register");
-        const { user: {username, password}} = this.state;
-
+        const { user } = this.state;
+        const {dispatch} = this.props;
+        this.setState({submitted: true});
+        dispatch(userActions.register(user));
     }
 
     render() {
@@ -52,7 +54,7 @@ import { userActions } from '../actions';
                     </div>
                     <div className={'form-group' + (submitted && !user.password ? ' has-error' : '')}>
                         <label htmlFor="password">Password</label>
-                        <input type="password" className="form-control" name="password" value={password} onChange={this.handleChange} />
+                        <input type="password" className="form-control password" name="password" value={password} onChange={this.handleChange} />
                         {submitted && !user.password &&
                             <div className="help-block">Password is required</div>
                         }
@@ -70,8 +72,8 @@ import { userActions } from '../actions';
 // complete the below function
 function mapStateToProps(state) {
     console.log(state);
-    return {};
+    return { ...state.authentication};
 }
 
-export { RegisterPage as TestRegisterPage };
-export default connect(mapStateToProps, null)(RegisterPage);
+export { RegisterComponent as TestRegisterPage };
+export const RegisterPage = connect(mapStateToProps, null)(RegisterComponent);

@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 
 import { store } from './helpers';
-import { App } from './App';
+import { ConnectedApp } from './App';
 
 import { configureFakeAPI } from './helpers';
 
@@ -11,7 +11,7 @@ configureFakeAPI();
 
 render(
     <Provider store={store}>
-        <App />
+        <ConnectedApp />
     </Provider>,
     document.getElementById('app')
 );
