@@ -1,7 +1,7 @@
 import React from 'react';
 import { Router, Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { PrivateRoute } from './PrivateRoute.js';
+import { PrivateRoute } from './PrivateRoute';
 import { history } from './helpers';
 import { alertActions, userActions } from './actions';
 import { HomePage } from './components/HomePage';
@@ -27,15 +27,12 @@ export class App extends React.Component {
         return (
             <Router history={history}>
               <div className="container">
-                <Route path="/">
-                    {!!alert && !!alert.type && <div className={`alert ${alert.type}`}>{alert.message}</div>}
-                </Route>
-                <div className="col-sm-8 col-sm-offset-2">
-                  <Switch>
+                {!!alert && !!alert.type && <div className={`alert ${alert.type}`}>{alert.message}</div>}
+                
+                <div className="col-sm-8 col-sm-offset-2">                  
                       <Route exact path="/login" component={LoginPage} />
                       <Route exact path="/register" component={RegisterPage} />  
                       <PrivateRoute exact path="/" component={HomePage} />
-                  </Switch>    
                 </div>
               </div>
             </Router>
