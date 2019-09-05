@@ -11,6 +11,7 @@ function login(username, password) {
         body: JSON.stringify({ username, password })
     };
 
+    localStorage.setItem("user",""); // purge any user session before starting the authentication process
     // call `/users/authenticate` with requestOptions to authenticate the login process
     return fetch('/users/authenticate', requestOptions).then(handleResponse);
     
