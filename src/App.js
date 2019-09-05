@@ -18,6 +18,9 @@ export class App extends React.Component {
             if (state && state.logout){
                 dispatch(userActions.logout());
                 dispatch(alertActions.success("You have been logged out"));
+                setTimeout(() => {
+                    dispatch(alertActions.clear());
+                }, 2000);
             }
         });
     }
@@ -27,7 +30,9 @@ export class App extends React.Component {
         return (
             <Router history={history}>
               <div className="container">
-                {!!alert && !!alert.type && <div className={`alert ${alert.type}`}>{alert.message}</div>}
+                  <div style={{minHeight:"55px"}}>
+                    {!!alert && !!alert.type && <div className={`alert ${alert.type}`}>{alert.message}</div>}
+                  </div>
                 
                 <div className="col-sm-8 col-sm-offset-2">                  
                       <Route exact path="/login" component={LoginPage} />
