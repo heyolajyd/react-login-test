@@ -74,8 +74,8 @@ import { stat } from 'fs';
 
 // complete the below function
 function mapStateToProps(state) {
-    console.log(state);
-    return { ...state.authentication};
+    
+    return { ...state.authentication, ...state.registration };
 }
 
 export { RegisterComponent as TestRegisterPage };
