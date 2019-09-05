@@ -18,10 +18,13 @@ function login(username, password) {
     function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
 
     return function (dispatch) {
+        dispatch(request({username,password}));
         userService.login(username, password).then(
             (user) => {
+                localStorage.setItem("user", JSON.stringify(user));
                 dispatch(success(user));
-                dispatch(alertActions.success("Login successful"));
+                dispatch(alertActions.success("You have successfully logged in"));
+                history.push("/");
             },
             (error) => {
                 dispatch(failure(error));

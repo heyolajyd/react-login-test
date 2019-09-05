@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 import { userActions } from '../actions';
 
-export class LoginPage extends Component {
+class LoginComponent extends Component {
     constructor(props) {
         super(props);
 
@@ -22,10 +22,21 @@ export class LoginPage extends Component {
     }
 
     handleChange(e) {
+        const { username, password } = this.state;
+
+        this.setState({[e.target.name]: e.target.value})
     }
 
     handleSubmit(e) {
-        
+        if(e) e.preventDefault();
+        const { username, password } = this.state;
+        const { dispatch } = this.props;
+
+        this.setState({submitted: true});
+
+        if( username && password ){
+            dispatch(userActions.login(username, password));
+        }
     }
 
     render() {
@@ -36,20 +47,20 @@ export class LoginPage extends Component {
                 <form name="form">
                     <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
                         <label htmlFor="username">Username</label>
-                        <input type="text" className="form-control username" name="username" />
+                        <input type="text" className="form-control username" name="username" value={username} onChange={this.handleChange} />
                         {submitted && !username &&
                             <div className="help-block">Username is required</div>
                         }
                     </div>
                     <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
                         <label htmlFor="password">Password</label>
-                        <input type="password" className="form-control" name="password"/>
+                        <input type="password" className="form-control password" name="password" value={password} onChange={this.handleChange} />
                         {submitted && !password &&
                             <div className="help-block">Password is required</div>
                         }
                     </div>
                     <div className="form-group">
-                        <button className="btn btn-primary">Login</button>
+                        <button type="submit" onClick={this.handleSubmit} className="btn btn-primary">Login</button>
                         <button className="btn btn-link">
                             <Link to="/register">Register</Link>
                         </button>
@@ -61,7 +72,11 @@ export class LoginPage extends Component {
 }
 
 function mapStateToProps(state) {
-
+    return {
+        ...state.authentication,
+        ...state.alert
+    }
 }
 
-export { LoginPage as TestLoginPage };
+export { LoginComponent as TestLoginPage };
+export const LoginPage = connect(mapStateToProps, null)(LoginComponent);
