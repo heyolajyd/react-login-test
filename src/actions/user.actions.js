@@ -33,7 +33,7 @@ function login(username, password) {
 
 function logout() {
     // complete this function
-    userService.logout().then(()=>{console.log("Logged out users")});
+    userService.logout();
     return {type: userConstants.LOGOUT}
 }
 
