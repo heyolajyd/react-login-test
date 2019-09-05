@@ -33,9 +33,12 @@ import { stat } from 'fs';
         // handle button click and dispatch register
         if(event) event.preventDefault();
         const { user } = this.state;
-        const {dispatch} = this.props;
+        const { username, password } = user;
+        const { dispatch } = this.props;
         this.setState({submitted: true});
-        dispatch(userActions.register(user));
+        if(username && password){
+            dispatch(userActions.register(user));
+        }
     }
 
     render() {
