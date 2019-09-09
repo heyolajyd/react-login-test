@@ -5,8 +5,8 @@ import { PrivateRoute } from './PrivateRoute';
 import { history } from './helpers';
 import { alertActions } from './actions';
 import { HomePage } from './components/HomePage';
-import { LoginPage } from './components/LoginPage';
-import { RegisterPage } from './components/RegisterPage';
+import { TestLoginPage as LoginPage } from './components/LoginPage';
+import { TestRegisterPage as RegisterPage } from './components/RegisterPage';
 
 class App extends React.Component {
   constructor(props) {
