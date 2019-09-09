@@ -1,5 +1,4 @@
-import React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -23,10 +22,24 @@ export class RegisterPage extends Component {
 
     handleChange(event) {
         // handle input change and dispatch register
+        const { name, value } = event.target;
+        const { user } = this.state;
+        this.setState({
+            user: {
+                ...user,
+                [name]: value
+            }
+        });
     }
 
     handleSubmit(event) {
         // handle button click and dispatch register
+        this.setState({ submitted: true });
+        const { user } = this.state;
+        if(user && user.username && user.password){
+            this.props.register(user);
+        }
+        
     }
 
     render() {
@@ -44,7 +57,7 @@ export class RegisterPage extends Component {
                     </div>
                     <div className={'form-group' + (submitted && !user.password ? ' has-error' : '')}>
                         <label htmlFor="password">Password</label>
-                        <input type="password" className="form-control" name="password"/>
+                        <input type="password" className="form-control password" name="password"/>
                         {submitted && !user.password &&
                             <div className="help-block">Password is required</div>
                         }
@@ -60,8 +73,20 @@ export class RegisterPage extends Component {
 }
 
 // complete the below function
+// complete the below function
 function mapStateToProps(state) {
-    
-}
-
-export { RegisterPage as TestRegisterPage };
+    return { registerState: state.registration };
+  }
+  
+  const mapDispatchToProps = dispatch => {
+    return {
+      register: user => dispatch(userActions.register(user))
+    };
+  }
+  
+  const ConnectedPage = connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(RegisterPage);
+  
+  export { ConnectedPage as TestRegisterPage };

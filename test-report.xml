@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite id="0" name="C:\Users\nimisoere.tekena\Documents\react-sandbox\react-login-test\react-login-test-1\src\App.test.js" errors="0" package="C:\Users\nimisoere.tekena\Documents\react-sandbox\react-login-test\react-login-test-1\src\App.test.js" hostname="localhost" tests="2" failures="0" time="9.635" timestamp="2019-09-09T16:04:22">
+    <properties>
+    </properties>
+    <testcase classname="Test AppComponent" name="check route, dispatch and store setup for component" time="0">
+    </testcase>
+    <testcase classname="Test AppComponent" name="check for redirections" time="0">
+    </testcase>
+    <system-out/>
+    <system-err/>
+  </testsuite>
+  <testsuite id="1" name="C:\Users\nimisoere.tekena\Documents\react-sandbox\react-login-test\react-login-test-1\src\tests\RegisterPage.test.js" errors="0" package="C:\Users\nimisoere.tekena\Documents\react-sandbox\react-login-test\react-login-test-1\src\tests\RegisterPage.test.js" hostname="localhost" tests="1" failures="0" time="10.086" timestamp="2019-09-09T16:04:21">
+    <properties>
+    </properties>
+    <testcase classname="Test RegisterPage component" name="check route, dispatch and store setup for component" time="0">
+    </testcase>
+    <system-out/>
+    <system-err/>
+  </testsuite>
+  <testsuite id="2" name="C:\Users\nimisoere.tekena\Documents\react-sandbox\react-login-test\react-login-test-1\src\tests\LoginPage.test.js" errors="0" package="C:\Users\nimisoere.tekena\Documents\react-sandbox\react-login-test\react-login-test-1\src\tests\LoginPage.test.js" hostname="localhost" tests="1" failures="0" time="10.031" timestamp="2019-09-09T16:04:22">
+    <properties>
+    </properties>
+    <testcase classname="Test LoginPage component" name="check route, dispatch and store setup for component" time="0">
+    </testcase>
+    <system-out/>
+    <system-err/>
+  </testsuite>
+  <testsuite id="3" name="C:\Users\nimisoere.tekena\Documents\react-sandbox\react-login-test\react-login-test-1\src\actions\index.test.js" errors="0" package="C:\Users\nimisoere.tekena\Documents\react-sandbox\react-login-test\react-login-test-1\src\actions\index.test.js" hostname="localhost" tests="4" failures="0" time="9.873" timestamp="2019-09-09T16:04:22">
+    <properties>
+    </properties>
+    <testcase classname="Test Redux Alert Actions" name="uses correct constants" time="0">
+    </testcase>
+    <testcase classname="Test Authentication via Redux" name="logout uses service and correct constant" time="0">
+    </testcase>
+    <testcase classname="Test Authentication via Redux" name="login uses service and correct dispatch logic" time="0">
+    </testcase>
+    <testcase classname="Test Authentication via Redux" name="register uses service and correct logic" time="0">
+    </testcase>
+    <system-out/>
+    <system-err/>
+  </testsuite>
+  <testsuite id="4" name="C:\Users\nimisoere.tekena\Documents\react-sandbox\react-login-test\react-login-test-1\src\tests\HomePage.test.js" errors="0" package="C:\Users\nimisoere.tekena\Documents\react-sandbox\react-login-test\react-login-test-1\src\tests\HomePage.test.js" hostname="localhost" tests="1" failures="0" time="4.316" timestamp="2019-09-09T16:04:32">
+    <properties>
+    </properties>
+    <testcase classname="Test HomePage component" name="uses Router for logout functionality" time="0">
+    </testcase>
+    <system-out/>
+    <system-err/>
+  </testsuite>
+  <testsuite id="5" name="C:\Users\nimisoere.tekena\Documents\react-sandbox\react-login-test\react-login-test-1\src\tests\user.service.test.js" errors="0" package="C:\Users\nimisoere.tekena\Documents\react-sandbox\react-login-test\react-login-test-1\src\tests\user.service.test.js" hostname="localhost" tests="2" failures="0" time="5.486" timestamp="2019-09-09T16:04:32">
+    <properties>
+    </properties>
+    <testcase classname="Test User service" name="check if a fetch promise is returned and localStorage is used in login" time="0">
+    </testcase>
+    <testcase classname="Test User service" name="check if logout removes `user` item from localStorage" time="0">
+    </testcase>
+    <system-out/>
+    <system-err/>
+  </testsuite>
+</testsuites>

@@ -12,13 +12,22 @@ export function authentication(state = initialState, action) {
       };
     case userConstants.LOGIN_SUCCESS:
       return {
+        loggingIn: false,
         loggedIn: true,
-        user: action.user
+        user: action.user,
+        error: null
       };
     case userConstants.LOGIN_FAILURE:
-      return {};
+      return {
+        loggingIn: false,
+        loggedIn: false,
+        user: null,
+        error: action.error
+      };
     case userConstants.LOGOUT:
-      return {};
+      return {
+        ...initialState
+      };
     default:
       return state
   }
