@@ -46,9 +46,9 @@ function register(user) {
         dispatch(request(user))
         try {
             dispatch(request(user))
-            const user = await userService.register(user);
-            if(user){
-                dispatch(success(user));
+            const userResponse = await userService.register(user);
+            if(userResponse){
+                dispatch(success(userResponse));
                 history.push("/login");
                 dispatch(alertActions.success("User successfully registered"));
             }

@@ -73,7 +73,7 @@ export class LoginPage extends Component {
             )}
           </div>
           <div className="form-group">
-            <button className="btn btn-primary">Login</button>
+            <button className="btn btn-primary">Login</button>{" "}
             <Link to="/register">Register</Link>
           </div>
         </form>

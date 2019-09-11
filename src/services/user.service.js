@@ -15,7 +15,7 @@ function login(username, password) {
     return fetch("/users/authenticate", requestOptions)
     .then(handleResponse)
     .then(user => {
-      localStorage.setItem("user", user);
+      localStorage.setItem("user", JSON.stringify(user));
       return user;
     });
 }

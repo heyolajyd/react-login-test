@@ -34,6 +34,7 @@ export class RegisterPage extends Component {
 
   handleSubmit(event) {
     // handle button click and dispatch register
+    event.preventDefault();
     this.setState({ submitted: true });
     const { user } = this.state;
     if (user && user.username && user.password) {
