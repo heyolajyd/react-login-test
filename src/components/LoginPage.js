@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
 
-import { userActions } from '../actions';
+import { userActions } from "../actions";
 
 export class LoginPage extends Component {
   constructor(props) {
@@ -11,8 +11,8 @@ export class LoginPage extends Component {
     // reset login status
 
     this.state = {
-      username: '',
-      password: '',
+      username: "",
+      password: "",
       submitted: false
     };
 
@@ -39,7 +39,7 @@ export class LoginPage extends Component {
     return (
       <div className="col-md-6 col-md-offset-3">
         <h2>Login</h2>
-        <form name="form">
+        <form name="form" onSubmit={this.handleSubmit}>
           <div
             className={
               "form-group" + (submitted && !username ? " has-error" : "")
@@ -50,6 +50,7 @@ export class LoginPage extends Component {
               type="text"
               className="form-control username"
               name="username"
+              onChange={this.handleChange}
             />
             {submitted && !username && (
               <div className="help-block">Username is required</div>
@@ -61,7 +62,12 @@ export class LoginPage extends Component {
             }
           >
             <label htmlFor="password">Password</label>
-            <input type="password" className="form-control password" name="password" />
+            <input
+              type="password"
+              className="form-control password"
+              name="password"
+              onChange={this.handleChange}
+            />
             {submitted && !password && (
               <div className="help-block">Password is required</div>
             )}
@@ -77,19 +83,20 @@ export class LoginPage extends Component {
 }
 
 function mapStateToProps(state) {
-    return { authenticate: state.authentication };
+  return { authenticate: state.authentication };
 }
 
 const mapDispatchToProps = dispatch => {
-    return {
-      login: (usernname, password) => dispatch(userActions.login(usernname, password)),
-      logout: () => dispatch(userActions.logout())
-    };
-  }
+  return {
+    login: (usernname, password) =>
+      dispatch(userActions.login(usernname, password)),
+    logout: () => dispatch(userActions.logout())
+  };
+};
 
-  const ConnectedPage = connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(LoginPage);
-  
-  export { ConnectedPage as TestLoginPage };
+const ConnectedPage = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LoginPage);
+
+export { ConnectedPage as TestLoginPage };
