@@ -15,10 +15,24 @@ function login(username, password) {
     function request(user) { return { type: userConstants.LOGIN_REQUEST, user } }
     function success(user) { return { type: userConstants.LOGIN_SUCCESS, user } }
     function failure(error) { return { type: userConstants.LOGIN_FAILURE, error } }
+    return function loginUser (dispatch){
+        localStorage.removeItem("user",);
+        dispatch(request({username, password}));
+        return userService.login(username, password).then((user)=>{
+            localStorage.setItem("user", JSON.stringify(user));
+            dispatch(success(user));
+            history.push("/home");
+        }, (error) => {
+            dispatch(failure(error));
+            dispatch(alertActions.error(error));
+        });
+    }
 }
 
 function logout() {
     // complete this function
+    userService.logout();
+    return {type: userConstants.LOGOUT}
 }
 
 function register(user) {
@@ -27,4 +41,18 @@ function register(user) {
     function request(user) { return { type: userConstants.REGISTER_REQUEST, user } }
     function success(user) { return { type: userConstants.REGISTER_SUCCESS, user } }
     function failure(error) { return { type: userConstants.REGISTER_FAILURE, error } }
+    return function (dispatch) {
+        dispatch(request(user));
+         userService.register(user).then(
+            (user) => {
+                dispatch(success(user));
+                history.push("/login");
+            },
+            (error) => {
+                dispatch(failure(error));
+                dispatch(alertActions.error(error));
+            }
+        ); 
+}
+
 }

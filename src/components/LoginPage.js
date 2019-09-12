@@ -22,10 +22,18 @@ export class LoginPage extends Component {
     }
 
     handleChange(e) {
+        const targetName = e.target.name;
+        const targetValue = e.target.value ;
+        this.setState({...this.state, [targetName]: targetValue});
     }
 
     handleSubmit(e) {
-        
+        e.preventDefault();
+        const { dispatch } = this.props;
+        this.setState({...this.state, submitted : true});
+       if(this.state.username && this.state.password){
+        dispatch(userActions.login(this.state.username, this.state.password));
+       }
     }
 
     render() {
@@ -36,20 +44,23 @@ export class LoginPage extends Component {
                 <form name="form">
                     <div className={'form-group' + (submitted && !username ? ' has-error' : '')}>
                         <label htmlFor="username">Username</label>
-                        <input type="text" className="form-control username" name="username" />
+                        <input type="text" className="form-control username" name="username" value={username} onChange={this.handleChange}  onBlur={this.handleChange}/>
                         {submitted && !username &&
                             <div className="help-block">Username is required</div>
                         }
                     </div>
                     <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
                         <label htmlFor="password">Password</label>
-                        <input type="password" className="form-control" name="password"/>
+                        <input type="password" className="form-control" name="password" value={password} onChange={this.handleChange}  onBlur={this.handleChange}/>
                         {submitted && !password &&
                             <div className="help-block">Password is required</div>
                         }
                     </div>
                     <div className="form-group">
-                        <button className="btn btn-primary">Login</button>
+                        <button className="btn btn-primary" onClick={this.handleSubmit}>Login</button>
+                        <button className="btn btn-link">
+                            <Link to="/register">Register</Link>
+                        </button>
                     </div>
                 </form>
             </div>
@@ -60,5 +71,8 @@ export class LoginPage extends Component {
 function mapStateToProps(state) {
 
 }
+
+LoginPage = connect()(LoginPage);
+
 
 export { LoginPage as TestLoginPage };
