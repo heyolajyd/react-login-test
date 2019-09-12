@@ -19,9 +19,8 @@ function login(username, password) {
         localStorage.removeItem("user",);
         dispatch(request({username, password}));
         return userService.login(username, password).then((user)=>{
-            localStorage.setItem("user", JSON.stringify(user));
             dispatch(success(user));
-            history.push("/home");
+            history.push("/");
         }, (error) => {
             dispatch(failure(error));
             dispatch(alertActions.error(error));

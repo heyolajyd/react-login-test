@@ -29,8 +29,7 @@ class App extends React.Component {
                     <div className="col-sm-8 col-sm-offset-2">
                      <Route exact path="/login" component={LoginPage} />
                       <Route exact path="/register" component={RegisterPage} />  
-                      <PrivateRoute exact path="/home" component={HomePage} />
-                      <Route exact path="/" component={LoginPage} />
+                      <PrivateRoute exact path="/" component={HomePage} />
                     </div>
                 </div>
               </Router>
@@ -47,4 +46,4 @@ function mapStateToProps(state) {
 
 App = connect(mapStateToProps)(App);
 
-export default App;
+export  {App};
